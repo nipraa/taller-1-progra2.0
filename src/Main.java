@@ -17,16 +17,16 @@ public class Main {
         /*
          definir los ajustes del lienzo
          */
-        StdDraw.setCanvasSize(800, 800);
-        double max = 100;
-        double min = -100;
+        StdDraw.setCanvasSize(600, 600);
+        double max = 1000;
+        double min = -1000;
         StdDraw.setXscale(min, max);
         StdDraw.setYscale(min, max);
         StdDraw.setTitle("taller_1");
         StdDraw.enableDoubleBuffering();
 
         while (!salir) {
-            System.out.println(":::Menú de Arte de la computación:::");
+            System.out.println("Menú de la computación");
             System.out.println("1. Agregar una línea ");
             System.out.println("2. Crear una circunferencia");
             System.out.println("3. Cambiar color");
