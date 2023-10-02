@@ -147,7 +147,9 @@ class ClassLineas {
 
         if (radio <= 0) {
             System.out.println("El radio debe ser un número positivo.");
-            // Ventana emergente que indica un error
+            /*
+             Ventana emergente que indica un error
+             */
         }
 
         else {
@@ -189,7 +191,7 @@ class ClassLineas {
         System.out.println("3. Azul");
         System.out.println("4. Rosado");
         System.out.println("5. verde");
-        System.out.println("6. Naranjo");
+        System.out.println("6. Naranja");
         System.out.println("7. Negro");
         System.out.println("8. Gris");
         System.out.println("9. Blanco");
@@ -200,7 +202,7 @@ class ClassLineas {
         Color colorSelect;
 
         /*
-         Switch de colores
+         Switch de los colores
          */
         switch (opcion) {
             case 1:
@@ -244,7 +246,63 @@ class ClassLineas {
          */
         return colorSelect;
     }
+    public static void anillosEnCapaPintadoAleatorio() {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Ingrese la coordenada del centro en X: ");
+        double centroX = scanner.nextDouble();
+
+        System.out.println("Ingrese la coordenada del centro en Y: ");
+        double centroY = scanner.nextDouble();
+
+        System.out.println("Ingrese el radio inicial de la circunferencia : ");
+        double radioInicial = scanner.nextDouble();
+
+        if (radioInicial <= 0) {
+            System.out.println("debe ser un número positivo.");
+            return;
+        }
+        /*
+        Ventana emergente que indica un error
+         */
+        System.out.println("Ingrese el valor de reducción del radio para los anillos : ");
+        double reduccionRadio = scanner.nextDouble();
+
+        if (reduccionRadio <= 0) {
+            System.out.println("debe ser un número positivo.");
+            return;
+        }
+
+        Color[] colores = {Color.RED, Color.YELLOW, Color.BLUE, Color.PINK, Color.GREEN, Color.ORANGE, Color.BLACK, Color.GRAY, Color.WHITE};
+
+
+        double radio = radioInicial;
+        int indiceColor = 0;
+
+        while (radio > 0) {
+            // color aleatorio
+            Color colorSeleccionado = colores[indiceColor % colores.length];
+            indiceColor++;
+
+            /*
+             Dibujar la circunferencia rellenada
+             */
+            StdDraw.setPenColor(colorSeleccionado);
+            StdDraw.filledCircle(centroX, centroY, radio);
+
+            /*
+            Reducir el radio para el siguiente anillo
+             */
+            radio -= reduccionRadio;
+
+            /*
+             Tiempo de espera para visualizar cada anillo
+             */
+            StdDraw.pause(700);
+        }
+
+        StdDraw.show();
+    }
     public static void crearCircunferenciaConCirculosInternos(Color colorSeleccionado) {
         Scanner scanner = new Scanner(System.in);
         // Incripcion de coordenadas del circulo
@@ -254,7 +312,7 @@ class ClassLineas {
         System.out.println("Ingrese la coordenada del centro en Y: ");
         double centroY = scanner.nextDouble();
 
-        System.out.println("Ingrese el radio inicial de la circunferencia (positivo): ");
+        System.out.println("Ingrese el radio inicial de la circunferencia : ");
         double radioInicial = scanner.nextDouble();
 
 
@@ -268,11 +326,14 @@ class ClassLineas {
         double reduccionRadio = scanner.nextDouble();
 
         if (reduccionRadio <= 0) {
-            System.out.println("El valor de reducción debe ser un número positivo.");
+            System.out.println("debe ser un número positivo.");
             return;
         }
+        /*Ventana emergente que indica un error
 
-        // Dibujar una circunferencia en una ubicación específica
+        * Dibujar una circunferencia en una ubicación específica
+
+        */
         double x = centroX;
         /*
          Coordenada x del centro de la circunferencia
@@ -380,61 +441,7 @@ class ClassLineas {
         }
     }
 
-    public static void anillosEnCapaPintadoAleatorio() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese la coordenada del centro en X: ");
-        double centroX = scanner.nextDouble();
-
-        System.out.println("Ingrese la coordenada del centro en Y: ");
-        double centroY = scanner.nextDouble();
-
-        System.out.println("Ingrese el radio inicial de la circunferencia (positivo): ");
-        double radioInicial = scanner.nextDouble();
-
-        if (radioInicial <= 0) {
-            System.out.println("El radio inicial debe ser un número positivo.");
-            return;
-        }
-
-        System.out.println("Ingrese el valor de reducción del radio para los anillos (positivo): ");
-        double reduccionRadio = scanner.nextDouble();
-
-        if (reduccionRadio <= 0) {
-            System.out.println("El valor de reducción debe ser un número positivo.");
-            return;
-        }
-
-        Color[] colores = {Color.RED, Color.YELLOW, Color.BLUE, Color.PINK, Color.GREEN, Color.ORANGE, Color.BLACK, Color.GRAY, Color.WHITE};
-
-
-        double radio = radioInicial;
-        int indiceColor = 0;
-
-        while (radio > 0) {
-            // color aleatorio
-            Color colorSeleccionado = colores[indiceColor % colores.length];
-            indiceColor++;
-
-            /*
-             Dibujar la circunferencia rellenada
-             */
-            StdDraw.setPenColor(colorSeleccionado);
-            StdDraw.filledCircle(centroX, centroY, radio);
-
-            /*
-            Reducir el radio para el siguiente anillo
-             */
-            radio -= reduccionRadio;
-
-            /*
-             Tiempo de espera para visualizar cada anillo
-             */
-            StdDraw.pause(700);
-        }
-
-        StdDraw.show();
-    }
 
     public void circunferenciaConLineaAnimada(Color colorSeleccionado) {
         Scanner scanner = new Scanner(System.in);
@@ -473,9 +480,17 @@ class ClassLineas {
         System.out.println("Ingrese la coordenada final de la línea en Y: ");
         double Y2 = scanner.nextDouble();
 
-        // Calcular el ángulo de rotación
-        double angulo = 0; // Ángulo inicial
-        double velocidadRotacion = 0.1; // Puedes ajustar la velocidad de rotación según tu preferencia
+        /*
+         Calcular el ángulo de rotación
+         */
+        double angulo = 0;
+        /*
+         Ángulo inicial
+         */
+        double velocidadRotacion = 0.05;
+        /*
+         Puedes ajustar la velocidad de rotación según tu preferencia
+         */
 
         while (true) {
             /*
@@ -488,8 +503,11 @@ class ClassLineas {
              Calcula las coordenadas rotadas de la línea
              */
             double X1Rot = centX + (X1 - centX) * Math.cos(angulo) - (Y1 - centY) * Math.sin(angulo);
+
             double Y1Rot = centY + (X1 - centX) * Math.sin(angulo) + (Y1 - centY) * Math.cos(angulo);
+
             double X2Rot = centX + (X2 - centX) * Math.cos(angulo) - (Y2 - centY) * Math.sin(angulo);
+
             double Y2Rot = centY + (X2 - centX) * Math.sin(angulo) + (Y2 - centY) * Math.cos(angulo);
 
             /*
@@ -504,7 +522,9 @@ class ClassLineas {
              */
             angulo += velocidadRotacion;
 
-            // Solicitar si se desea borrar la animación
+            /*
+             Solicitar si se desea borrar la animación
+             */
             System.out.println("¿Desea borrar la animación? (1: Sí / 0: No): ");
             int opcion = scanner.nextInt();
 
